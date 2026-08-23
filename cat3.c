@@ -2,12 +2,25 @@
 #include <cs50.h>
 
 //prototype
+int get_n(void);
 void meow(int times);
 
 int main(void)
 {
-    int n= get_int("What's n?\n");
+    int n= get_n();
     meow(n);
+}
+
+
+int get_n(void)
+{
+    int n;
+    do
+    {
+        n=get_int("whats n?");
+    }
+    while (n<0);
+    return n;
 }
 
 //void meow line from this line below 14-20 can replace the 5 line so
@@ -18,6 +31,6 @@ void meow(int times)
     {
         printf("meow\n");
     }
-} 
+}
     
  
