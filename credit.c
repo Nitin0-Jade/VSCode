@@ -3,10 +3,9 @@
 
 int main(void)
 {
-    // 1. Get credit card number (must use 'long' because ints max out around 2 billion)
+    // Get credit card number (must use 'long' because ints max out around 2 billion)
     long card = get_long("Number: ");
 
-    // 2. Variables for digit counting and starting digits
     long temp = card;
     int length = 0;
     
@@ -17,14 +16,13 @@ int main(void)
         length++;
     }
 
-    // Check for valid length first; if invalid length, fail immediately
     if (length != 13 && length != 15 && length != 16)
     {
         printf("INVALID\n");
         return 0;
     }
 
-    // 3. Perform Luhn's Algorithm (Checksum)
+    //Luhn's Algorithm
     temp = card;
     int sum1 = 0; // Sum of every second digit from right, multiplied by 2
     int sum2 = 0; // Sum of the other digits
@@ -43,7 +41,7 @@ int main(void)
         {
             // Position 1, 3, 5... (from right): multiply by 2
             int product = digit * 2;
-            // Add the digits of the product (e.g., 12 becomes 1 + 2 = 3)
+            // Add the digits of the product
             sum1 += (product / 10) + (product % 10);
         }
 
@@ -53,21 +51,19 @@ int main(void)
 
     int total_sum = sum1 + sum2;
 
-    // If checksum doesn't end in 0, card is invalid
     if (total_sum % 10 != 0)
     {
         printf("INVALID\n");
         return 0;
     }
 
-    // 4. Get the starting digits (first 1 or 2 digits)
+    // Get the starting digits (first 1 or 2 digits)
     long start_digits = card;
     while (start_digits >= 100)
     {
         start_digits /= 10;
     }
 
-    // 5. Determine the card type
     // AMEX: 15 digits, starts with 34 or 37
     if (length == 15 && (start_digits == 34 || start_digits == 37))
     {
