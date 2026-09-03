@@ -2,6 +2,7 @@ def main():
 
     letters = 0
     words = 0
+    spaces=0
     sentences = 0
     text = input("Text: ")
 
