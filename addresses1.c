@@ -30,6 +30,4 @@ int main(void)
 
     printf("%p\n",t)//put HI!
     printf("%p\n",w)//put HI!
-
-    
 } 

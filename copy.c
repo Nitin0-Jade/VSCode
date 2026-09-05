@@ -9,8 +9,8 @@ int main(void)
     char *t = s; //copies the address of s into t
     // * = go to
 
-    t[0] = toupper(t*); //or toupper(t[0]) 
+    t[0] = toupper(t[0]); //or toupper(t*) 
 
-    printf("s: %s\n",s)
-    printf("t: %s\n",t)
+    printf("s: %s\n",s);
+    printf("t: %s\n",t);
 }
