@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+        <link href="styles1.css" rel="stylesheet">
+        <title>My Webpage</title>
+        
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                let greenBtn = document.querySelector('#Green');
+                let blueBtn = document.querySelector('#Blue');
+                let redBtn = document.querySelector('#Red');
+
+                greenBtn.addEventListener('click', function() {
+                    greenBtn.style.backgroundColor = 'green';
+                });
+
+                blueBtn.addEventListener('click', function() {
+                    blueBtn.style.backgroundColor = 'blue';
+                });
+
+                redBtn.addEventListener('click', function() {
+                    redBtn.style.backgroundColor = 'red';
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1> HOME | ABOUT | MY HOBBIES | TRIVIA QUIZ </h1>
+        </div>
+
+        <div class="main">
+            <h2> HELLO,WORLD</h2>
+            <hr>
+            
+            <p>
+                Welcome to my corner of the internet.Built for Pset8
+            </p>
+        
+        </div>
+
+        <div class="footer">
+            <h3>About ME</h3>
+            <hr>
+            <p>
+                I'm a student at cs50...
+            </p>
+            <p>
+                and is in learning things about web dev
+            </p>
+        </div>
+
+        <div class="footer">
+            <h4>About ME</h4>
+            <hr>
+            <p>
+                Question card for trivia?
+            </p>
+            <button id="Blue">Blue</button>
+            <button id="Red">Red</button>
+            <button id="Green">Green</button>
+        </div>
+
+        <div class="card-container">
+            <div class="footer">...About Me...</div>
+            <div class="footer">...Trivia...</div>
+            <div class="footer">...Hobby...</div>
+        </div>
+
+        <div class="footer">
+            <h5>MY FAVORITE HOBBY</h5>
+            <hr>
+            <p>
+                Discover what I do
+            </p>
+            <p>
+                outside of coding
+            </p>
+        </div>
+    </body>
+</html>

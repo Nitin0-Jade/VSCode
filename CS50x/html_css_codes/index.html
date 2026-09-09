@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+
+                // Part 1: Multiple Choice
+                document.querySelector('#washington').addEventListener('click', function() {
+                    alert('Correct!');
+                });
+                document.querySelector('#obama').addEventListener('click', function() {
+                    alert('Incorrect!');
+                });
+                document.querySelector('#trump').addEventListener('click', function() {
+                    alert('Incorrect!');
+                });
+                document.querySelector('#biden').addEventListener('click', function() {
+                    alert('Incorrect!');
+                });
+
+                // Part 2: Free Response
+                document.querySelector('#answer').addEventListener('keyup', function() {
+                    if (this.value.toLowerCase() === 'washington') {
+                        this.style.backgroundColor = 'green';
+                    }
+                    else {
+                        this.style.backgroundColor = 'red';
+                    }
+                });
+
+            });
+        </script>
+    </head>
+
+    <body>
+
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+
+            <div class="section">
+                <h2>Part 1: Multiple Choice</h2>
+                <hr>
+
+                <h3>Who was the 1st President of the United States?</h3>
+
+                <button id="washington">George Washington</button>
+                <button id="obama">Barack Obama</button>
+                <button id="trump">Donald Trump</button>
+                <button id="biden">Joe Biden</button>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+
+                <h3>Who was the 1st President of the United States?</h3>
+
+                <input id="answer" type="text">
+
+            </div>
+
+        </div>
+
+    </body>
+</html>
