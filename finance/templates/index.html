@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Index
+{% endblock %}
+
+{% block main %}
+        </div>
+            <div class="mt-4">
+                <h1>My portfolio</h1>
+                <p>
+                    {% for i in holdings %}
+                        {{ i["symbol"] }}
+                        {{ i["shares"] }}
+                        {{ i["price"] | usd }}
+                        {{ i["total"] | usd }}
+                        
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ cash | usd }}
+                </p>
+                <p>
+                    {{ grand_total | usd }}
+                </p>
+            </div>
+{% endblock %}

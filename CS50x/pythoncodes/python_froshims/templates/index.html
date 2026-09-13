@@ -4,7 +4,7 @@
 
     <h1>Register</h1>
     <form action="/register" method="post">
-        <input autocomplete name="name" placeholder="Name" type="text">
+        <input autocomplete="off" name="name" placeholder="Name" type="text">
         <select name="sport">
             <option Selectes value="">Sport</option>
             {% for sport in sports %}
