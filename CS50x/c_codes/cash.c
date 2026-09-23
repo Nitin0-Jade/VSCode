@@ -6,10 +6,10 @@ int main(void)
   int coins=0;
   int change;
   do
-    {
-      change = get_int("Change owed(in cents): ");
-    }
-    while (change < 0);
+  {
+    change = get_int("Change owed(in cents): ");
+  }
+  while (change < 0);
 
   if (change >= 25)
     {

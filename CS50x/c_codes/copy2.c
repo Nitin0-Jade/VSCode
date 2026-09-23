@@ -12,7 +12,7 @@ int main(void)
         return 1;
     }
 
-    char *t = malloc(strlen(s)+1);
+    char *t = malloc(strlen(s)+1); //for /0
     if (t == NULL) //same as s
     {
         return 1;
