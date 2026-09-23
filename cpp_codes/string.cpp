@@ -190,6 +190,225 @@ int main()
     return 0;
 }
 
+std::string_view C++17
+
+To address the issue with std::string being expensive to initialize (or copy), C++17 introduced 
+std::string_view (which lives in the <string_view> header). 
+
+
+#include <iostream>
+#include <string_view> // C++17
+
+// str provides read-only access to whatever argument is passed in
+void printSV(std::string_view str) // now a std::string_view
+{
+    std::cout << str << '\n';
+}
+
+int main()
+{
+    std::string_view s{ "Hello, world!" }; // now a std::string_view
+    printSV(s);
+
+    return 0;
+}
+
+
+
+Best practice
+
+Prefer std::string_view over std::string when 
+you need a read-only string, especially for function parameters.
+
+
+
+One of the neat things about a std::string_view is how flexible it is. 
+A std::string_view object can be initialized with a C-style string, 
+a std::string, or another std::string_view:
+
+
+
+#include <iostream>
+#include <string>
+#include <string_view>
+
+int main()
+{
+    std::string_view s1 { "Hello, world!" }; // initialize with C-style string literal
+    std::cout << s1 << '\n';
+
+    std::string s{ "Hello, world!" };
+    std::string_view s2 { s };  // initialize with std::string
+    std::cout << s2 << '\n';
+
+    std::string_view s3 { s2 }; // initialize with std::string_view
+    std::cout << s3 << '\n';
+
+    return 0;
+}
+
+""""""""""""""IMP"""""""""""""
+std::string_view will not implicitly convert to std::string
+
+
+
+
+
+
+
+
+
+
+
+#include <iostream>
+#include <string>
+#include <string_view>
+
+int main()
+{
+    std::string name { "Alex" };
+    std::string_view sv { name }; // sv is now viewing name
+    std::cout << sv << '\n'; // prints Alex
+
+    sv = "John"; // sv is now viewing "John" (does not change name)
+    std::cout << sv << '\n'; // prints John
+
+    std::cout << name << '\n'; // prints Alex
+
+    return 0;
+}
+
+
+In the above example, sv = "John" causes sv to now view the string "John". 
+It does not change the value held by name (which is still "Alex").
+
+
+
+LITERALS
+
+
+#include <iostream>
+#include <string>      // for std::string
+#include <string_view> // for std::string_view
+
+int main()
+{
+    using namespace std::string_literals;      // access the s suffix
+    using namespace std::string_view_literals; // access the sv suffix
+
+    std::cout << "foo\n";   // no suffix is a C-style string literal
+    std::cout << "goo\n"s;  // s suffix is a std::string literal
+    std::cout << "moo\n"sv; // sv suffix is a std::string_view literal
+
+    return 0;
+}
+
+
+-----CONSTEXPR-----------
+
+
+#include <iostream>
+#include <string_view>
+
+int main()
+{
+    constexpr std::string_view s{ "Hello, world!" }; // s is a string symbolic constant
+    std::cout << s << '\n'; // s will be replaced with "Hello, world!" at compile-time
+
+    return 0;
+}
+
+When printString(s) is called, str makes an expensive copy of s. 
+The function prints the copied string and then destroys it.
+
+
+std::string_view takes a different approach to initialization. Instead of making an expensive copy of the initialization string, 
+std::string_view creates an inexpensive view of the initialization string. 
+The std::string_view can then be used whenever access to the string is required.
+
+
+#include <iostream>
+#include <string>
+#include <string_view>
+
+void printSV(std::string_view str) // now a std::string_view, creates a view of the argument
+{
+    std::cout << str << '\n';
+}
+
+int main()
+{
+    printSV("Hello, world!"); // call with C-style string literal
+
+    std::string s2{ "Hello, world!" };
+    printSV(s2); // call with std::string
+
+    std::string_view s3 { s2 };
+    printSV(s3); // call with std::string_view
+
+    return 0;
+}
+
+
+The remove_prefix() member function removes characters from the left side of the view.
+The remove_suffix() member function removes characters from the right side of the view.
+
+
+
+#include <iostream>
+#include <string_view>
+
+int main()
+{
+	std::string_view str{ "Peach" };
+	std::cout << str << '\n';
+
+	// Remove 1 character from the left side of the view
+	str.remove_prefix(1);
+	std::cout << str << '\n';
+
+	// Remove 2 characters from the right side of the view
+	str.remove_suffix(2);
+	std::cout << str << '\n';
+
+	str = "Peach"; // reset the view
+	std::cout << str << '\n';
+
+	return 0;
+}
+
+
+
+A C-style string literal and a std::string are always null-terminated.
+A std::string_view may or may not be null-terminated.
+
+
+
+Use a std::string variable when:
+
+You need a string that you can modify.
+You need to store user-inputted text.
+You need to store the return value of a function that returns a std::string.
+
+
+Use a std::string_view variable when:
+
+You need read-only access to part or all of a string that already exists elsewhere and will not be modified or destroyed before use of the std::string_view is complete.
+You need a symbolic constant for a C-style string.
+You need to continue viewing the return value of a function that returns a C-style string or a non-dangling std::string_view.
+
+
+#include <cstdint> // for std::uint8_t
+
+
+
+
+
+
+
+
+
+
 
 
 
