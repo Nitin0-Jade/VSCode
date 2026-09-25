@@ -320,4 +320,8 @@ int main()
     return 0;
 }
 
-Note that printIDAndValue<int> and printIDAndValue<double> each have their own independent static local variable named id, not one that is shared between them.
+Note that printIDAndValue<int> and 
+printIDAndValue<double> each have their own 
+independent static local variable named id, 
+not one that is shared between them.
+*/
