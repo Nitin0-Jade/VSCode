@@ -1,4 +1,4 @@
-#include <iostream>
+/*#include <iostream>
 
 #define ENABLE_DEBUG // comment out to disable debugging
 
@@ -11,7 +11,7 @@ std::cerr << "getUserInput() called\n";
 	int x{};
 	std::cin >> x;
 	return x;
-}
+}*/
 
 int main()
 {
