@@ -19,7 +19,7 @@ constexpr std::string_view getColor(Color color)
     case red:   return "red";
     case blue:  return "blue";
     default:    return "???";
-    }
+    } 
 }
 
 int main()
