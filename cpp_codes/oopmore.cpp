@@ -19,3 +19,10 @@ int main()
 
 	return 0;
 }
+
+
+/*
+An rvalue object is destroyed at the end of the full expression in which it is created. Any references to members of the rvalue object are left dangling at that point.
+
+A reference to a member of an rvalue object can only be safely used within the full expression where the rvalue object is created.
+*/
