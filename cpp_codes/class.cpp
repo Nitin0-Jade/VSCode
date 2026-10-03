@@ -53,7 +53,6 @@ struct Something
         std::cout << "const\n";
     }
 };
-
 int main()
 {
     Something s1{};
