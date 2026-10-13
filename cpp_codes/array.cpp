@@ -25,8 +25,6 @@ Our std::array declaration has two template arguments. The first (int) is a type
 
 Related content
 
-We cover non-type template parameters in lesson 11.9 -- Non-type template parameters.
-
 The length of a std::array must be a constant expression
 
 Unlike a std::vector, which can be resized at runtime, the length of a std::array must be a constant expression. Most often, the value provided for the length will be an integer literal, constexpr variable, or an unscoped enumerator.
@@ -42,10 +40,10 @@ int main()
 
     enum Colors
     {
-         red,
-         green,
-         blue,
-         max_colors
+        red,
+        green,
+        blue,
+        max_colors
     };
 
     std::array<int, max_colors> c {}; // Using an enumerator
