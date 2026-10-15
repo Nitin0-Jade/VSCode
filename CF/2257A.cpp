@@ -1,39 +1,53 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <cctype>
-
 
 int main()
 {
-    int m{},n{},t{};
-    std::string s{},q{};
-    std::cin>>t;
-    if(t>=1 && t<=500)
+    int t{};
+    std::cin >> t;
+
+    for (int i = 0; i < t; i++)
     {
-        for(int i=0;i<t;i++)
+        int n{}, m{};
+        std::cin >> n >> m;
+
+        std::vector<int> a(26, 0);
+
+        std::string s{};
+
+        for (int j = 0; j < n; j++)
         {
-            std::cin>> n >> m;
-            for(int j=0;j<n;j++)
-            {
-                std::cin>> s;
-                std::vector<char> a(n);
-                a[i]= std::toupper(static_cast<unsigned char>(s[0]));
-            }
-            for(int w=0;w<n;w++)
-            {
-               std::vector<string> b(n);
-               c
-               b[i]=b.push_back(a[i]+a[i+1]);
-               
-            }
-            for(int k=0;k<m;k++)
-            {
-                std::cin>> q;
-            }
-            if()
+            std::cin >> s;
 
+            a[s[0] - 'a'] = 1;
+        }
 
+        bool possible = true;
+
+        for (int j = 0; j < m; j++)
+        {
+            std::string q{};
+            std::cin >> q;
+
+            for (int k = 0; k < q.size(); k++)
+            {
+                if (a[q[k] - 'A'] == 0)
+                {
+                    possible = false;
+                }
+            }
+        }
+
+        if (possible)
+        {
+            std::cout << "YES\n";
+        }
+        else
+        {
+            std::cout << "NO\n";
         }
     }
+
+    return 0;
 }
