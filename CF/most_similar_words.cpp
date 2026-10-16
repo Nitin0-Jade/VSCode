@@ -1,33 +1,54 @@
 #include <iostream>
 #include <string>
-#include <cctype>
+#include <vector>
+using namespace std;
 
 int main()
 {
-    int t{};
-    std::string s;
-    std::cin>>t;
-    std::size_t len = s.size();
-    if(t>=1 && t<=100)
+    int t;
+    cin >> t;
+
+    while (t--)
     {
-        int m{},n{};
-        std::cin>> n >> m;
-        if(n>=2 && n<=50 && m>=1 && m<=8)
+        int n, m;
+        cin >> n >> m;
+
+        vector<string> words(n);
+
+        for (int i = 0; i < n; i++)
         {
-            if(len==m)
+            cin >> words[i];
+        }
+
+        int answer = 1000;
+
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = i + 1; j < n; j++)
             {
-                for(int i{0};i<n;++i)
+                int current = 0;
+
+                for (int k = 0; k < m; k++)
                 {
-                    std::cin>> s;
-                    char x=std::tolower(static_cast<unsigned char>(s))
-                    
+                    int d = words[i][k] - words[j][k];
 
-                    
+                    if (d < 0)
+                    {
+                        d = -d;
+                    }
 
+                    current += d;
                 }
 
+                if (current < answer)
+                {
+                    answer = current;
+                }
             }
-            
         }
+
+        cout << answer << '\n';
     }
+
+    return 0;
 }
