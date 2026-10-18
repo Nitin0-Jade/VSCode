@@ -1,35 +1,37 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
+#include <utility>
 
 int main()
 {
-    int s{},n{},c{};
-    std::cin>> s >> n;
-    if(s>=1 && s<=10000 && n>=1 && n<=1000)
+    int s{}, n{};
+    std::cin >> s >> n;
+
+    std::vector<std::pair<int, int>> dragons(n);
+
+    for (int i = 0; i < n; i++)
     {
-        for(int i{0};i<n;i++)
-        {
-            std::cin>> x >> y;
-            if(x>=1 && x<=10000 && y>=0 && y<=10000)
-            {
-                if(s>x)
-                {
-                    s+=y;
-                    c=0;
-                }
-                else
-                {
-                    c=1;
-                }
-            }
-        }
-        if(c==0)
-        {
-            std::cout<< "YES" << "\n";
-        }
-        else
-        {
-            std::cout<< "NO" << "\n";
-        }
+        std::cin >> dragons[i].first >> dragons[i].second;
     }
+
+    std::sort(dragons.begin(), dragons.end());
+
+    for (int i = 0; i < n; i++)
+    {
+        int x = dragons[i].first;
+        int y = dragons[i].second;
+
+        if (s <= x)
+        {
+            std::cout << "NO\n";
+            return 0;
+        }
+
+        s += y;
+    }
+
+    std::cout << "YES\n";
+
+    return 0;
 }
