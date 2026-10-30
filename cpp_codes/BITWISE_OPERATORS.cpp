@@ -184,3 +184,153 @@ Now multiply each digit by its place value and add:
 
 156
 
+1. What does ~ actually do?
+The ~ operator is called the bitwise NOT operator or bitwise complement.
+
+It flips every bit:
+- 0 becomes 1
+- 1 becomes 0
+For example, using an 8-bit illustration:
+  5 = 00000101
+ ~5 = 11111010
+      --------
+      Every bit flipped
+
+
+Notice that all eight bits change according to that rule.
+
+But there's an important catch: C++ doesn't normally treat an int as an 8-bit number. The example above is just to make the flipping easy to see.
+
+Let's explore what actually happens.
+2. Why does ~5 become -6?
+In typical C++ implementations, an int uses 32 bits. Let's use 8 bits temporarily to make the calculation easier.
+
+The number 5 is:
+00000101
+
+
+Apply ~:
+Original:  00000101
+           ↓↓↓↓↓↓↓↓
+Flipped:   11111010
+
+
+That resulting bit pattern represents −6 when interpreted as an 8-bit signed integer using two's complement.
+How do we know it's −6?
+For a negative two's-complement number:
+1. Flip the bits again.
+2. Add 1.
+3. The result is the magnitude; attach a negative sign.
+11111010   Result of ~5
+00000101   Flip the bits
+00000110   Add 1
+
+
+00000110 is decimal 6, so the original pattern represents −6.
+
+Therefore:
+\[
+\boxed{\sim 5=-6}
+\]
+
+In C++, the operator is written ~, not ~=. And the result for a signed integer on modern C++ implementations follows this rule:
+\[
+\boxed{\sim x=-x-1}
+\]
+
+For example:
+Expression	Result
+~0	-1
+~1	-2
+~2	-3
+~5	-6
+~-1	0
+
+This is the most useful trick to memorize. You don't need to write out 32 bits every time.
+3. What does ~ do with unsigned integers?
+This is where it gets interesting.
+unsigned int x = 5;
+std::cout << ~x;
+
+
+On a typical system with 32-bit unsigned int, the output is:
+4294967290
+
+
+Why? The value 5 is represented as:
+00000000 00000000 00000000 00000101
+
+
+After flipping every bit:
+11111111 11111111 11111111 11111010
+
+
+An unsigned integer interprets all bits as a nonnegative value, so the result is 4294967290.
+
+The general formula for an unsigned integer with \(N\) value bits is:
+\[
+\boxed{\sim x=(2^N-1)-x}
+\]
+
+For 32-bit unsigned integers, that becomes:
+\[
+(2^{32}-1)-5=4294967290
+\]
+
+So remember: the bits are flipped either way, but the type determines how the resulting bit pattern is interpreted.
+4. ~ versus ! — don't mix them up!
+This is a very common beginner mistake.
+Operator	Name	What it does
+~x	Bitwise NOT	Flips every bit
+!x	Logical NOT	Produces true if x is zero; otherwise false
+
+For example:
+int x = 5;
+
+std::cout << ~x << '\n';  // -6
+std::cout << !x << '\n';  // 0
+std::cout << !0 << '\n';  // 1
+
+
+Why does !5 print 0? Because 5 is nonzero, so it is logically true; negating that truth value gives false, represented as 0 when printed as an integer.
+5. Useful tricks involving ~
+Trick A: ~x == -x - 1
+Instead of calculating every bit, use the identity.
+int x = 12;
+std::cout << ~x;  // -13
+
+
+Because:
+\[
+-12-1=-13
+\]
+
+Trick B: ~0 gives all bits set
+int mask = ~0;
+
+
+On a typical 32-bit int, every bit in mask is 1, and its value is -1.
+
+This is useful for understanding bit masks, although explicit unsigned masks are often clearer in practical code.
+Trick C: Flipping selected bits with XOR
+If you want to flip only certain bits, ^ is often more useful than ~.
+unsigned int x = 5;  // ...00000101
+unsigned int mask = 1;
+
+std::cout << (x ^ mask);
+
+
+Output:
+4
+
+
+XOR with 1 flips the selected bit; XOR with 0 leaves it unchanged. Here, only the rightmost bit is flipped.
+6. Important: ~ does not mean “make the number negative”
+It flips the representation's bits. The negative result for signed integers comes from how signed values are represented and interpreted.
+
+Also, ~x does not simply reverse the binary digits. For example:
+00101
+
+
+Reversing the order would give 10100, but flipping every bit gives:
+11010
