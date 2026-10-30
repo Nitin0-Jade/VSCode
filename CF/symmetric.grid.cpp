@@ -16,7 +16,11 @@ int main()
         std::vector<std::string> a(n);
 
         for (int i = 0; i < n; i++)
-        {
+        {//REVERSE CANCATENATION
+            /*
+            int s;
+            cin>>s;
+            vector t(s.begin(),s.end());*/
             std::cin >> a[i];
         }
 
