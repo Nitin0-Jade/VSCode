@@ -1,33 +1,31 @@
 
 #include <iostream>
+#include <vector>
 
 int main()
 {
     int n{};
     std::cin >> n;
 
-    int count{0};
+    std::vector<int> lucky{
+        4, 7,
+        44, 47, 74, 77,
+        444, 447, 474, 477,
+        744, 747, 774, 777
+    };
 
-    while (n > 0)
+    bool isAlmostLucky{false};
+
+    for (int x : lucky)
     {
-        int x = n % 10;
-
-        if (x == 4 || x == 7)
+        if (n % x == 0)
         {
-            ++count;
+            isAlmostLucky = true;
+            break;
         }
-
-        n /= 10;
     }
 
-    if (count == 4 || count == 7)
-    {
-        std::cout << "YES\n";
-    }
-    else
-    {
-        std::cout << "NO\n";
-    }
+    std::cout << (isAlmostLucky ? "YES" : "NO") << '\n';
 
     return 0;
 }
