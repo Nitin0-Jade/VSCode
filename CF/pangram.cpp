@@ -15,6 +15,7 @@ int main()
         std::set<char> st;
         for (int i = 0; i < n; ++i)
         {
+            s[i] = static_cast<unsigned char>(std::tolower(s[i]));
             st.insert(s[i]);
         }
         if (st.size() == 26)
